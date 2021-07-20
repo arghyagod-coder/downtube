@@ -8,7 +8,7 @@ from youtube_search import *
 import time
 from click_help_colors import HelpColorsGroup, HelpColorsCommand
 
-@click.version_option('1.0.4', prog_name='downtube')
+@click.version_option('1.0.5', prog_name='downtube')
 @click.group(
     cls=HelpColorsGroup, help_headers_color="blue", help_options_color="green"
 )
