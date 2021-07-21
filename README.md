@@ -120,9 +120,26 @@ dtube dlal 'https://www.youtube.com/watch?v=kJQP7kiw5Fk
 ```
 The video redirected by your url will be downloaded to your current folder in AUDIO format
 
-#### Developers
+##### --dir flag
+
+The dir flag ensures that your file is downloaded in the Downloads directory of your computer
+
+For e.g.
+
+```bash
+dtube dlvl https://youtu.be/kJQP7kiw5Fk -d
+```
+
+The above command sets your download location as C://Downloads for windows and /home/user/Downloads for Linux/Mac. The same flag applies for `dlyt`, `dayt` and `dlal`.
+### Developers
 - [Arghya Sarkar](https://github.com/arghyagod-coder)
 
+### Current Release- 0.1.6
+
+#### Whats new?
+
+- Custom directory options and default directory awesome
+- Better handling of errors
 
 ### Developer Tools
 

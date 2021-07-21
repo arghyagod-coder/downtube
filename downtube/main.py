@@ -8,7 +8,7 @@ from youtube_search import *
 import time
 from click_help_colors import HelpColorsGroup, HelpColorsCommand
 
-@click.version_option('1.0.5', prog_name='downtube')
+@click.version_option('0.1.6', prog_name='downtube')
 @click.group(
     cls=HelpColorsGroup, help_headers_color="blue", help_options_color="green"
 )
@@ -26,7 +26,6 @@ def init():
     except FileExistsError as e:
         print('File already exists')
 
-    
 @main.command('config', help="Setup your default video resolution")
 @click.option('--resolution', '-dr')
 def config(resolution):
@@ -40,9 +39,12 @@ def config(resolution):
 
 @main.command('dlvl', help="Download Video by URL")
 @click.argument('url')
+@click.option('--dir', '-d', is_flag=True)
 @click.option('--resolution', '-r')
-def download_by_link(url, resolution):
+def download_by_link(url, resolution, dir):
     try:
+        if dir:
+            os.chdir(os.path.join((os.path.expanduser("~")), 'Downloads'))
         URL = pytube.YouTube(url)
         avail = []
         flist = ['1080p', '720p', '480p', '360p', '240p', '144p']
@@ -74,9 +76,12 @@ def download_by_link(url, resolution):
     
 @main.command('dlyt', help="Download Video by Search")
 @click.argument('search')
+@click.option('--dir', '-d', is_flag=True)
 @click.option('--resolution', '-r')
-def download_from_yt(search, resolution):
+def download_from_yt(search, resolution, dir):
     try:
+        if dir:
+            os.chdir(os.path.join((os.path.expanduser("~")), 'Downloads'))
         results = YoutubeSearch(str(search), max_results=1).to_dict()
         sp = results[0]["id"]
         URL = pytube.YouTube('https://youtube.com/' + sp)
@@ -114,8 +119,12 @@ def download_from_yt(search, resolution):
     
 @main.command('dayt', help="Download Audio by Search")
 @click.argument('search')
-def download_from_yt(search):
+@click.option('--dir', '-d', is_flag=True)
+def download_from_yt(search, dir):
     try:
+        if dir:
+            os.chdir(os.path.join((os.path.expanduser("~")), 'Downloads'))
+
         results = YoutubeSearch(str(search), max_results=1).to_dict()
         sp = results[0]["id"]
         URL = pytube.YouTube('https://youtube.com/' + sp)
@@ -134,8 +143,12 @@ def download_from_yt(search):
 
 @main.command('dlal', help="Download Audio by URL")
 @click.argument('url')
-def download_from_yt(url):
+@click.option('--dir', '-d', is_flag=True)
+def download_from_yt(url, dir):
     try:
+        if dir:
+            os.chdir(os.path.join((os.path.expanduser("~")), 'Downloads'))
+
         URL = pytube.YouTube(url)
         results = YoutubeSearch(str(URL.title), max_results=1).to_dict()
         click.secho(URL.title, fg='yellow')

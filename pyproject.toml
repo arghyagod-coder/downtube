@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "downtube"
-version = "0.1.5"
+version = "0.1.6"
 description = "A simple yet powerful youtube downloader built in python"
 authors = ["Arghya Sarkar <arghyasarkar.nolan@gmail.com>"]
 license = "MIT"
